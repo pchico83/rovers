@@ -23,13 +23,13 @@ jobs:
     - name: Deploy Application
       uses: okteto/pipeline@master
       with:
+        name: rovers
         namespace: pr-${{ github.event.number }}-pchico83
-        manifest: manifests
 
     - name: comment PR
       uses: okteto/notify-pr@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        msg: "Preview environment available at https://robers-pr-${{ github.event.number }}-pchico83.cloud.okteto.net"
+        message: "Preview environment available at https://rovers-pr-${{ github.event.number }}-pchico83.cloud.okteto.net"
 
