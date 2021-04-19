@@ -1,2 +1,2 @@
 # rovers
-App to show rivers photos
+App to show rovers photos
