@@ -1,2 +1,2 @@
 # rovers
-App to show rovers photos
+App to show Mars Rovers latest photos
