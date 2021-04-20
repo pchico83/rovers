@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rovers
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rovers
+  template:
+    metadata:
+      labels:
+        app: rovers
+    spec:
+      containers:
+      - image: okteto.dev/rovers
+        name: rovers
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: rovers
+spec:
+  type: LoadBalancer
+  ports:
+  - name: rovers
+    port: 80
+  selector:
+    app: rovers
