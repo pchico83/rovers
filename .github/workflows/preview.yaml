@@ -20,6 +20,7 @@ jobs:
       uses: okteto/deploy-preview@master
       with:
         name: pr-${{ github.event.number }}-pchico83
+        sourceURL: https://github.com/pchico83/rovers/pull/${{ github.event.number }}
 
     - name: Comment PR
       uses: okteto/notify-pr@master
