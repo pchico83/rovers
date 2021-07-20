@@ -13,24 +13,19 @@ jobs:
     - name: Login
       uses: okteto/login@debug
       with:
+        url: ${{ secrets.OKTETO_URL }}
         token: ${{ secrets.OKTETO_TOKEN }}
         url: ${{ secrets.OKTETO_URL }}
 
-    - name: Create namespace
-      uses: okteto/create-namespace@master
+    - name: Deploy Preview
+      uses: okteto/deploy-preview@master
       with:
         namespace: pr-${{ github.event.number }}-pchico83
 
-    - name: Deploy Application
-      uses: okteto/pipeline@master
-      with:
-        name: rovers
-        namespace: pr-${{ github.event.number }}-pchico83
-
-    - name: comment PR
+    - name: Comment PR
       uses: okteto/notify-pr@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        message: "Preview environment available at https://rovers-pr-${{ github.event.number }}-pchico83.cloud.okteto.net"
+        message: "Preview environment available at https://rovers-pr-${{ github.event.number }}-pchico83.staging.okteto.net"
 

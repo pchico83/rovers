@@ -13,9 +13,10 @@ jobs:
     - name: Login
       uses: okteto/login@master
       with:
+        url: ${{ secrets.OKTETO_URL }}
         token: ${{ secrets.OKTETO_TOKEN }}
 
     - name: Delete namespace
-      uses: okteto/delete-namespace@master
+      uses: okteto/destroy-preview@master
       with:
         namespace: pr-${{ github.event.number }}-pchico83
