@@ -7,7 +7,7 @@ jobs:
   closed:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
+    - name: Checkout
       uses: actions/checkout@master
 
     - name: Login
@@ -16,7 +16,7 @@ jobs:
         url: ${{ secrets.OKTETO_URL }}
         token: ${{ secrets.OKTETO_TOKEN }}
 
-    - name: Delete namespace
+    - name: Destroy Preview
       uses: okteto/destroy-preview@master
       with:
         name: pr-${{ github.event.number }}-pchico83
