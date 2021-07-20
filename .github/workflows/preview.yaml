@@ -20,7 +20,7 @@ jobs:
     - name: Deploy Preview
       uses: okteto/deploy-preview@master
       with:
-        namespace: pr-${{ github.event.number }}-pchico83
+        name: pr-${{ github.event.number }}-pchico83
 
     - name: Comment PR
       uses: okteto/notify-pr@master
