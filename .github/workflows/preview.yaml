@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@master
 
     - name: Login
-      uses: okteto/login@debug
+      uses: okteto/login@master
       with:
         url: ${{ secrets.OKTETO_URL }}
         token: ${{ secrets.OKTETO_TOKEN }}
