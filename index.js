@@ -7,6 +7,7 @@ const rovers = [
 
 const defaultRover = 'curiosity';
 
+
 async function fetchPhotos(rover = 'curiosity') {
   const latestSol = {
     curiosity: 3090,
