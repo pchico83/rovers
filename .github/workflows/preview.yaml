@@ -36,4 +36,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        msg: "Namespace: https://okteto.pablo.dev.okteto.net/#/spaces/preview-pr-${{ github.event.number }}\nEndpoint: https://rovers-preview-pr-${{ github.event.number }}.pablo.okteto.net"
+        message: "Namespace: https://okteto.pablo.dev.okteto.net/#/spaces/preview-pr-${{ github.event.number }}\nEndpoint: https://rovers-preview-pr-${{ github.event.number }}.pablo.okteto.net"
