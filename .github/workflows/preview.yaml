@@ -19,7 +19,7 @@ jobs:
     - name: Namespace
       uses: okteto/create-namespace@latest
       with:
-        namespace: pr-${{ github.event.number }}
+        namespace: preview-pr-${{ github.event.number }}
 
     - name: Build
       uses: okteto/build@latest
@@ -29,11 +29,11 @@ jobs:
     - name: Deploy
       uses: okteto/apply@master
       with:
-        manifest: k8s.yaml
+        manifest: k8s.yml
 
     - name: Links
       uses: okteto/notify-pr@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        msg: "Preview environment available at https://rovers-pr-${{ github.event.number }}.pablo.okteto.net"
+        msg: "Namespace: https://okteto.pablo.dev.okteto.net/#/spaces/preview-pr-${{ github.event.number }}\nEndpoint: https://rovers-preview-pr-${{ github.event.number }}.pablo.okteto.net"
