@@ -11,15 +11,29 @@ jobs:
       uses: actions/checkout@master
 
     - name: Login
-      uses: okteto/login@master
+      uses: okteto/login@latest
       with:
         url: ${{ secrets.OKTETO_URL }}
         token: ${{ secrets.OKTETO_TOKEN }}
 
-    - name: Deploy Preview
-      uses: okteto/deploy-preview@master
+    - name: Namespace
+      uses: okteto/create-namespace@latest
+      with:
+        namespace: pr-${{ github.event.number }}
+
+    - name: Build
+      uses: okteto/build@latest
+      with:
+        tag: okteto.dev/rovers:preview
+
+    - name: Deploy
+      uses: okteto/apply@master
+      with:
+        manifest: k8s.yaml
+
+    - name: Links
+      uses: okteto/notify-pr@latest
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        name: pr-${{ github.event.number }}-pchico83
-        sourceURL: https://github.com/pchico83/rovers/pull/${{ github.event.number }}
+        msg: "Preview environment available at https://rovers-pr-${{ github.event.number }}.pablo.okteto.net"

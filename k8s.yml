@@ -13,7 +13,7 @@ spec:
         app: rovers
     spec:
       containers:
-      - image: okteto.dev/rovers
+      - image: okteto.dev/rovers:preview
         name: rovers
 
 ---
