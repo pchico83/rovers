@@ -1,8 +1,7 @@
 const rovers = [
   'curiosity',
   'spirit',
-  'opportunity',
-  'perseverance'
+  'opportunity'
 ];
 
 const defaultRover = 'curiosity';
