@@ -7,33 +7,15 @@ jobs:
   preview:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
+      - uses: okteto/login@1.13.10
+        with:
+          url: ${{ secrets.OKTETO_URL }}
+          token: ${{ secrets.OKTETO_TOKEN }}
 
-    - name: Login
-      uses: okteto/login@latest
-      with:
-        url: ${{ secrets.OKTETO_URL }}
-        token: ${{ secrets.OKTETO_TOKEN }}
-
-    - name: Namespace
-      uses: okteto/create-namespace@latest
-      with:
-        namespace: preview-pr-${{ github.event.number }}
-
-    - name: Build
-      uses: okteto/build@latest
-      with:
-        tag: okteto.dev/rovers:preview
-
-    - name: Deploy
-      uses: okteto/apply@master
-      with:
-        manifest: k8s.yml
-
-    - name: Links
-      uses: okteto/notify-pr@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        message: "Namespace: ${{ secrets.OKTETO_URL }}/#/spaces/preview-pr-${{ github.event.number }}\nEndpoint: https://rovers-preview-pr-${{ github.event.number }}.pablo.dev.okteto.net"
+      - name: Preview
+        uses: okteto/deploy-preview@1.13.10
+        with:
+          name: preview-pr-${{ github.event.number }}
+          scope: global
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
