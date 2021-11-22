@@ -20,6 +20,8 @@ async function fetchPhotos(rover = 'curiosity') {
     page: '1'
   }).toString();
   const result = await fetch(url);
+
+  
   const { photos } = await result.json();
   return photos;
 }
