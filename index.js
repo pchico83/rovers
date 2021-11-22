@@ -1,5 +1,4 @@
 const rovers = [
-  'curiosity',
   'spirit',
   'opportunity',
   'perseverance'
